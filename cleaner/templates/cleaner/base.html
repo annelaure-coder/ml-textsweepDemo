@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}TextSweep Demo{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'cleaner/css/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="{% url 'cleaner:home' %}">TextSweep</a>
+        <nav class="nav">
+            <a href="{% url 'cleaner:home' %}">Cleaner</a>
+            <a href="{% url 'cleaner:history' %}">History</a>
+        </nav>
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle color theme">
+            Dark mode
+        </button>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        Demo of the <code>textsweep</code> Python package for ML text preprocessing.
+    </footer>
+
+    <script src="{% static 'cleaner/js/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{% extends "cleaner/base.html" %}
+
+{% block title %}Clean text · TextSweep Demo{% endblock %}
+
+{% block content %}
+<section class="panel">
+    <h1>Clean text for ML</h1>
+    <p class="lede">
+        Lowercases text and removes URLs, HTML tags, emojis, and punctuation
+        using <code>textsweep.clean_text</code>.
+    </p>
+
+    <form id="clean-form" method="post" action="{% url 'cleaner:home' %}" novalidate>
+        {% csrf_token %}
+        <label for="id_text">Text to clean</label>
+        {{ form.text }}
+        {% if form.text.errors %}
+            <p class="error">{{ form.text.errors.0 }}</p>
+        {% endif %}
+        <p id="live-count" class="hint">0 characters · 0 words</p>
+        <p id="form-error" class="error" hidden></p>
+
+        <div class="actions">
+            <button type="submit" id="clean-btn">Clean</button>
+            <button type="button" id="clear-btn" class="secondary">Clear</button>
+        </div>
+    </form>
+</section>
+
+<section id="results" class="panel results{% if not result %} is-empty{% endif %}">
+    <div class="results-head">
+        <h2>Result</h2>
+        <button type="button" id="copy-btn" class="secondary"{% if not result %} disabled{% endif %}>
+            Copy cleaned text
+        </button>
+    </div>
+    <p id="copy-status" class="hint" hidden></p>
+
+    <div class="split">
+        <article>
+            <h3>Original</h3>
+            <pre id="original-text">{% if result %}{{ result.original }}{% endif %}</pre>
+        </article>
+        <article>
+            <h3>Cleaned</h3>
+            <pre id="cleaned-text">{% if result %}{{ result.cleaned }}{% endif %}</pre>
+        </article>
+    </div>
+
+    <dl class="stats">
+        <div>
+            <dt>Characters before</dt>
+            <dd id="stat-char-before">{% if result %}{{ result.stats.char_count_before }}{% else %}—{% endif %}</dd>
+        </div>
+        <div>
+            <dt>Characters after</dt>
+            <dd id="stat-char-after">{% if result %}{{ result.stats.char_count_after }}{% else %}—{% endif %}</dd>
+        </div>
+        <div>
+            <dt>Words before</dt>
+            <dd id="stat-word-before">{% if result %}{{ result.stats.word_count_before }}{% else %}—{% endif %}</dd>
+        </div>
+        <div>
+            <dt>Words after</dt>
+            <dd id="stat-word-after">{% if result %}{{ result.stats.word_count_after }}{% else %}—{% endif %}</dd>
+        </div>
+    </dl>
+</section>
+{% endblock %}

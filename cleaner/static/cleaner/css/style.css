@@ -1,0 +1,263 @@
+:root {
+    --bg: #f6f4ef;
+    --surface: #ffffff;
+    --text: #1c1917;
+    --muted: #57534e;
+    --border: #e7e5e4;
+    --accent: #0f766e;
+    --accent-hover: #115e59;
+    --danger: #b91c1c;
+    --shadow: 0 10px 30px rgba(28, 25, 23, 0.08);
+    --radius: 14px;
+}
+
+[data-theme="dark"] {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #334155;
+    --accent: #2dd4bf;
+    --accent-hover: #5eead4;
+    --danger: #fca5a5;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.site-header,
+.container,
+.site-footer {
+    width: min(980px, calc(100% - 2rem));
+    margin-inline: auto;
+}
+
+.site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    padding: 1.25rem 0;
+}
+
+.brand {
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--text);
+}
+
+.nav {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+}
+
+.nav a {
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.nav a:hover,
+.brand:hover {
+    color: var(--accent);
+}
+
+.theme-toggle,
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+.theme-toggle,
+button.secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+}
+
+button[type="submit"] {
+    background: var(--accent);
+    color: var(--bg);
+    border: 0;
+    border-radius: 999px;
+    padding: 0.55rem 1.2rem;
+}
+
+button[type="submit"]:hover,
+.theme-toggle:hover,
+button.secondary:hover {
+    background: var(--accent-hover);
+    color: var(--bg);
+    border-color: transparent;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.container {
+    display: grid;
+    gap: 1.25rem;
+    padding-bottom: 2rem;
+}
+
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.25rem 1.4rem 1.5rem;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0 0 0.6rem;
+    font-weight: 700;
+}
+
+.lede,
+.hint {
+    color: var(--muted);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+}
+
+textarea {
+    width: 100%;
+    font: inherit;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--text);
+    resize: vertical;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.75rem;
+}
+
+.error {
+    color: var(--danger);
+    margin: 0.4rem 0 0;
+}
+
+.results.is-empty pre {
+    min-height: 3.5rem;
+}
+
+.results-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.9rem;
+    min-height: 4.5rem;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin: 1.1rem 0 0;
+}
+
+.stats div {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 0.7rem 0.8rem;
+}
+
+.stats dt {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.stats dd {
+    margin: 0.15rem 0 0;
+    font-size: 1.2rem;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.65rem 0.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.site-footer {
+    color: var(--muted);
+    padding: 0 0 2rem;
+}
+
+@media (max-width: 720px) {
+    .split,
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .split,
+    .stats {
+        grid-template-columns: 1fr;
+    }
+}

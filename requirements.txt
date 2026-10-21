@@ -1,0 +1,2 @@
+django>=5.0
+textsweep==0.1.0
